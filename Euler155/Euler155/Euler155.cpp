@@ -1,6 +1,9 @@
 // Euler155.cpp : définit le point d'entrée pour l'application console.
 //
 
+// Euler155.cpp : définit le point d'entrée pour l'application console.
+//
+
 #include "stdafx.h"
 #include "Euler155.h"
 #include <queue>
@@ -14,7 +17,7 @@
 
 
 //using namespace std;
-const int standardCapacity = 60;
+/*const int standardCapacity = 60;
 
 //Node
 Node::Node() {
@@ -45,10 +48,11 @@ std::string Capacitor::toString() {
 
 std::vector<Node*> Capacitor::addACapacitor(int capacity) {
 	std::vector<Node*> result;
-	ComplexNode parNode(PARALLEL), serNode(SERIAL);
+	ComplexNode* parNode = new ComplexNode(PARALLEL);
+	ComplexNode* serNode = new ComplexNode(SERIAL);
 	if (this->getFather() == NULL) {
 		//ComplexNode* parNode = new ComplexNode(NULL, PARALLEL);
-		Capacitor* copyNode = new Capacitor(this);
+		Capacitor* copyNode = new Capacitor(*this);
 		copyNode->setFather(parNode);
 		//parNode->addNode(copyNode);
 		//parNode->addNode(&Capacitor(parNode, capacity));
@@ -59,7 +63,7 @@ std::vector<Node*> Capacitor::addACapacitor(int capacity) {
 		serNode->addNode(anOtherCopyNode);
 		serNode->addNode(anOtherCopyNode);
 		serNode->addNode(&Capacitor(serNode, capacity));
-		result.push_back(serNode);	
+		result.push_back(serNode);
 	}
 	else {
 		ComplexNode *fatherNode = dynamic_cast<ComplexNode*> (this->getFather());
@@ -165,14 +169,14 @@ std::vector<Node*> ComplexNode::addACapacitor(int capacity) {
 		newNode.addNode(&Capacitor(this, capacity));
 		result.push_back(&newNode);
 	}
-	//std::vector<Node*> result = Node::addACapacitor(capacity);
+	std::vector<Node*> result = Node::addACapacitor(capacity);
 	std::vector<Node*> tmpList;
 	std::vector<Node*>::iterator iterNodes;
 	std::vector<Node*>::iterator iterCreatedNodes;
-	int curSize = 0; 
+	int curSize = 0;
 	int n = this->getSize();
 	for (int i = 0; i < n; i++) {
-		if (i !=0 && this->nodes[i]->getSize() < curSize) {
+		if (i != 0 && this->nodes[i]->getSize() < curSize) {
 			tmpList = this->nodes[i]->addACapacitor(capacity);
 			for (iterNodes = tmpList.begin(); iterNodes < tmpList.end(); iterNodes++) {
 				ComplexNode newNode = *this;
@@ -180,7 +184,8 @@ std::vector<Node*> ComplexNode::addACapacitor(int capacity) {
 				result.push_back(&newNode);
 			}
 			curSize = this->nodes[i]->getSize();
-		} else break;
+		}
+		else break;
 	}
 	return result;
 }
@@ -215,16 +220,16 @@ std::string printVector(std::vector<Node*> v) {
 	size_t size = v.size();
 	std::string result;
 	for (int i = 0; i < size; i++) {
-		result += v[i]->toString()+'\n';
+		result += v[i]->toString() + '\n';
 	}
 	return result;
 }
-
+*/
 int main() {
 	//std::vector<Node*> nodesFound = findNodes(1);
-	std::vector<Node*> nodesFound;
-	Capacitor aSimpleNode(NULL, standardCapacity);
-	nodesFound = aSimpleNode.addACapacitor(standardCapacity);
+	//std::vector<Node*> nodesFound;
+	//Capacitor aSimpleNode(NULL, standardCapacity);
+	//nodesFound = aSimpleNode.addACapacitor(standardCapacity);
 	/*ComplexNode newNode(NULL, SERIAL);
 	newNode.addNode(&Capacitor(&newNode,standardCapacity));
 	newNode.addNode(&Capacitor(&newNode, standardCapacity));
@@ -235,7 +240,9 @@ int main() {
 	nodesFound.push_back(&anOtherNewNode);
 	nodesFound.push_back(&Capacitor(NULL, standardCapacity));*/
 
-	std::cout << printVector(nodesFound);
+	//std::cout << printVector(nodesFound);
 	return 0;
 }
+
+
 

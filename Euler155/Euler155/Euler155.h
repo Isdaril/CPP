@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-typedef enum Node_Type_t {
+/*typedef enum Node_Type_t {
 	PARALLEL = 0, 
 	SERIAL = 1
 };
@@ -49,4 +49,4 @@ public:
 	virtual std::vector<Node*> addACapacitor(int capacity);
 	virtual int getSize();
 	virtual std::string toString();
-};
+};*/
